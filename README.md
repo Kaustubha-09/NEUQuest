@@ -291,6 +291,9 @@ Potential improvements for future iterations:
 Our design process began with comprehensive wireframes that mapped out the core user flows:
 
 #### Itinerary Planning Flow (Figures 1-a, 1-b, 1-c, 1-d)
+
+![Itinerary Planning Wireframes](docs/images/Screenshot_2026-01-24_at_3.28.45_PM-e201d2f0-e1cc-47b1-9091-ba3432761a8e.png)
+
 - **Add Activities Screen**: Intuitive interface for initiating activity addition to itineraries with a prominent plus icon
 - **Event Details Input Form**: Comprehensive form for capturing event information including:
   - Event name, optional link, location, time
@@ -307,6 +310,9 @@ Our design process began with comprehensive wireframes that mapped out the core 
   - Edit functionality for user-created events
 
 #### Budget Travel Planning Flow (Figures 2-a, 2-b, 2-c, 2-d)
+
+![Budget Travel Planning Wireframes](docs/images/Screenshot_2026-01-24_at_3.29.23_PM-5dd3acc4-d266-47e8-8c6e-ec1358e88630.png)
+
 - **Budget Input Screen**: Initial trip planning interface featuring:
   - Budget amount input (default: $150)
   - Checkboxes for including travel and meals in budget calculations
@@ -331,6 +337,9 @@ Our design process began with comprehensive wireframes that mapped out the core 
 ### Prototypes
 
 #### Prototype 1: Main Feed/Discovery Page (Figure 3)
+
+![Prototype 1 - Main Feed](docs/images/Screenshot_2026-01-24_at_3.29.37_PM-b96b0c05-da76-4272-8974-387470b4fcc9.png)
+
 - **Location-Based Content**: Dual location selector (Silicon Valley/Boston dropdown)
 - **Event Card Design**: Prominent event listings featuring:
   - Venue name (e.g., "SAP Center")
@@ -341,6 +350,9 @@ Our design process began with comprehensive wireframes that mapped out the core 
 - **Navigation**: Bottom navigation bar with Explore, Alerts/Reports, Add, and Profile icons
 
 #### Prototype 2: Deals & Events Feed (Figure 4)
+
+![Prototype 2 - Deals Feed](docs/images/Screenshot_2026-01-24_at_3.29.47_PM-6fa3edf1-e760-4dd9-96a6-c30092a050af.png)
+
 - **Search & Filter**: "Search Events / Deals" bar with "Interest based" filter dropdown
 - **Content Cards**: Vertical feed of student-focused deals and events:
   - Image placeholders
@@ -354,6 +366,9 @@ Our design process began with comprehensive wireframes that mapped out the core 
 Based on user feedback, we implemented several key enhancements:
 
 #### Collaborative Planning Feature (Final Screen Designs)
+
+![Collaborative Planning Feature](docs/images/Screenshot_2026-01-24_at_3.30.19_PM-ed6f5824-f45f-4d97-903a-0c1812325572.png)
+
 - **Feature Description**: Enables multiple users to work together on developing travel plans
 - **Key Capabilities**:
   - Real-time editing
@@ -367,6 +382,9 @@ Based on user feedback, we implemented several key enhancements:
 - **Benefits**: Improves plan quality, increases alignment, and makes planning more efficient
 
 #### Like/Dislike System (Right Now/Home Screen)
+
+![Like/Dislike System - Right Now Screen](docs/images/Screenshot_2026-01-24_at_3.30.27_PM-7a6d565e-ee32-4a82-84d3-1d93ca37dd2e.png)
+
 - **User Feedback**: Users requested easier ways to express approval or disapproval of events
 - **Implementation**: Added like and dislike buttons to the "Right Now" page
 - **Purpose**: Allows users to easily express sentiment towards displayed events, contributing to personalized feed curation and improved recommendations
@@ -384,7 +402,15 @@ Based on user feedback, we implemented several key enhancements:
 
 ## 📸 Screenshots
 
-*Wireframes and prototypes are available in the project documentation. Screenshots of the final implemented UI will be added here.*
+### Design Wireframes & Prototypes
+
+All wireframes and prototypes are included below, showcasing the complete design process from initial concepts to user-tested iterations.
+
+#### Additional Design Assets
+
+![Additional Wireframe](docs/images/image-d12b3cd5-c7d5-4955-b7f3-184e391c5026.png)
+
+*Note: Screenshots of the final implemented UI will be added here as the app development progresses.*
 
 ---
 
