@@ -266,47 +266,80 @@ Potential improvements for future iterations:
 
 Our design process began with comprehensive wireframes that mapped out the core user flows:
 
-#### Itinerary Planning Flow
+<table>
+<tr>
+<td width="50%">
 
-![Itinerary Planning Wireframes](docs/images/Screenshot_2026-01-24_at_3.28.45_PM-e201d2f0-e1cc-47b1-9091-ba3432761a8e.png)
+**Itinerary Planning Flow**
+
+<img src="docs/images/Screenshot_2026-01-24_at_3.28.45_PM-e201d2f0-e1cc-47b1-9091-ba3432761a8e.png" alt="Itinerary Planning Wireframes" width="200"/>
 
 Wireframes showing the complete flow from adding activities, inputting event details (name, location, time, budget, category), viewing daily itineraries with timeline visualization, and accessing detailed event information screens.
 
-#### Budget Travel Planning Flow
+</td>
+<td width="50%">
 
-![Budget Travel Planning Wireframes](docs/images/Screenshot_2026-01-24_at_3.29.23_PM-5dd3acc4-d266-47e8-8c6e-ec1358e88630.png)
+**Budget Travel Planning Flow**
+
+<img src="docs/images/Screenshot_2026-01-24_at_3.29.23_PM-5dd3acc4-d266-47e8-8c6e-ec1358e88630.png" alt="Budget Travel Planning Wireframes" width="200"/>
 
 Complete budget travel workflow: budget input with travel/meal options, budget allocation visualization with pie charts, event discovery with search and filters, and itinerary timeline with chronological activity scheduling.
 
+</td>
+</tr>
+</table>
+
 ### Prototypes
 
-#### Prototype 1: Main Feed/Discovery Page
+<table>
+<tr>
+<td width="50%">
 
-![Prototype 1 - Main Feed](docs/images/Screenshot_2026-01-24_at_3.29.37_PM-b96b0c05-da76-4272-8974-387470b4fcc9.png)
+**Prototype 1: Main Feed/Discovery Page**
+
+<img src="docs/images/Screenshot_2026-01-24_at_3.29.37_PM-b96b0c05-da76-4272-8974-387470b4fcc9.png" alt="Prototype 1 - Main Feed" width="200"/>
 
 Location-based event discovery with dual location selector, prominent event cards showing venue, date/time, and details, plus bottom navigation with Explore, Alerts, Add, and Profile options.
 
-#### Prototype 2: Deals & Events Feed
+</td>
+<td width="50%">
 
-![Prototype 2 - Deals Feed](docs/images/Screenshot_2026-01-24_at_3.29.47_PM-6fa3edf1-e760-4dd9-96a6-c30092a050af.png)
+**Prototype 2: Deals & Events Feed**
+
+<img src="docs/images/Screenshot_2026-01-24_at_3.29.47_PM-6fa3edf1-e760-4dd9-96a6-c30092a050af.png" alt="Prototype 2 - Deals Feed" width="200"/>
 
 Student-focused deals feed with search bar, interest-based filters, and vertical cards showcasing student discounts, events, and grocery deals with action buttons.
+
+</td>
+</tr>
+</table>
 
 ### User Testing & Iterations
 
 Based on user feedback, we implemented several key enhancements:
 
-#### Collaborative Planning Feature
+<table>
+<tr>
+<td width="50%">
 
-![Collaborative Planning Feature](docs/images/Screenshot_2026-01-24_at_3.30.19_PM-ed6f5824-f45f-4d97-903a-0c1812325572.png)
+**Collaborative Planning Feature**
+
+<img src="docs/images/Screenshot_2026-01-24_at_3.30.19_PM-ed6f5824-f45f-4d97-903a-0c1812325572.png" alt="Collaborative Planning Feature" width="200"/>
 
 Enables multiple users to collaborate on travel plans with real-time editing, commenting, task assignment, and version control. Users can share itineraries with friends and work together to improve plan quality.
 
-#### Like/Dislike System
+</td>
+<td width="50%">
 
-![Like/Dislike System - Right Now Screen](docs/images/Screenshot_2026-01-24_at_3.30.27_PM-7a6d565e-ee32-4a82-84d3-1d93ca37dd2e.png)
+**Like/Dislike System**
+
+<img src="docs/images/Screenshot_2026-01-24_at_3.30.27_PM-7a6d565e-ee32-4a82-84d3-1d93ca37dd2e.png" alt="Like/Dislike System - Right Now Screen" width="200"/>
 
 Based on user feedback, added like/dislike buttons to the "Right Now" page, allowing users to express sentiment towards events and enabling algorithmic fine-tuning of personalized feed content.
+
+</td>
+</tr>
+</table>
 
 ### Design Principles
 
@@ -316,7 +349,9 @@ Based on user feedback, added like/dislike buttons to the "Right Now" page, allo
 - **Timeline Visualization**: Visual representation of schedules and itineraries
 - **Personalization**: Interest-based filtering and recommendations throughout
 
-![Additional Design Wireframe](docs/images/image-d12b3cd5-c7d5-4955-b7f3-184e391c5026.png)
+**Additional Design Wireframe**
+
+<img src="docs/images/image-d12b3cd5-c7d5-4955-b7f3-184e391c5026.png" alt="Additional Design Wireframe" width="200"/>
 
 ---
 
