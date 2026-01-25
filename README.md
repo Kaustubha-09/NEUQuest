@@ -320,6 +320,34 @@ Based on user feedback, added like/dislike buttons to the "Right Now" page, allo
 
 ---
 
+## 📸 Live Demo Screenshots
+
+### Welcome Screen
+
+![Welcome Screen](docs/images/image-1e2d605e-0624-4382-8bf0-f718e7b98b51.png)
+
+The initial entry point of NEUQuest, featuring a clean welcome interface with options to sign up or log in. The app uses a distinctive color scheme with light beige backgrounds and dark brown accent colors.
+
+### Profile Screen
+
+![Profile Screen](docs/images/image-f9e5bd82-a29e-4fb5-9af4-b10bcbd18c90.png)
+
+User profile management screen displaying user information (name and email), profile picture, and account management options including editing interests, logout, and account deletion. Also shows planned trips section and bottom navigation.
+
+### Trip Budget Screen
+
+![Trip Budget Screen](docs/images/image-c7f8fab7-9fb8-4753-afa2-1937302717b2.png)
+
+Budget planning interface with range slider for minimum and maximum budget selection, options to include meals and transport in budget calculations, and form fields for trip dates, times, and location.
+
+### Create Event Screen
+
+![Create Event Screen](docs/images/image-a32d20f4-cf0d-464e-abf7-93154a93d538.png)
+
+Event creation form allowing users to input event details including name, description, price, start/end dates and times, location, and image selection. Features the consistent NEUQuest design language with dark brown header and light beige content area.
+
+---
+
 ## 🤝 Contributing
 
 This project was developed as a collaborative effort for academic purposes. For questions or feedback, please contact the team members listed above.
