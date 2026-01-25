@@ -322,29 +322,29 @@ Based on user feedback, added like/dislike buttons to the "Right Now" page, allo
 
 ## 📸 Live Demo Screenshots
 
-### Welcome Screen
+### Welcome & Authentication
 
-![Welcome Screen](docs/images/image-1e2d605e-0624-4382-8bf0-f718e7b98b51.png)
+<img src="docs/images/image-1e2d605e-0624-4382-8bf0-f718e7b98b51.png" alt="Welcome Screen" width="250"/>
 
-The initial entry point of NEUQuest, featuring a clean welcome interface with options to sign up or log in. The app uses a distinctive color scheme with light beige backgrounds and dark brown accent colors.
+Clean welcome interface with sign up and login options, featuring NEUQuest's distinctive beige and brown color scheme.
 
-### Profile Screen
+### User Profile
 
-![Profile Screen](docs/images/image-f9e5bd82-a29e-4fb5-9af4-b10bcbd18c90.png)
+<img src="docs/images/image-f9e5bd82-a29e-4fb5-9af4-b10bcbd18c90.png" alt="Profile Screen" width="250"/>
 
-User profile management screen displaying user information (name and email), profile picture, and account management options including editing interests, logout, and account deletion. Also shows planned trips section and bottom navigation.
+Profile management screen with user information, profile picture, interest editing, account controls, and planned trips overview.
 
-### Trip Budget Screen
+### Budget Planning
 
-![Trip Budget Screen](docs/images/image-c7f8fab7-9fb8-4753-afa2-1937302717b2.png)
+<img src="docs/images/image-c7f8fab7-9fb8-4753-afa2-1937302717b2.png" alt="Trip Budget Screen" width="250"/>
 
-Budget planning interface with range slider for minimum and maximum budget selection, options to include meals and transport in budget calculations, and form fields for trip dates, times, and location.
+Intuitive budget planning with range slider for min/max budget, meal and transport options, plus trip date/time/location inputs.
 
-### Create Event Screen
+### Event Creation
 
-![Create Event Screen](docs/images/image-a32d20f4-cf0d-464e-abf7-93154a93d538.png)
+<img src="docs/images/image-a32d20f4-cf0d-464e-abf7-93154a93d538.png" alt="Create Event Screen" width="250"/>
 
-Event creation form allowing users to input event details including name, description, price, start/end dates and times, location, and image selection. Features the consistent NEUQuest design language with dark brown header and light beige content area.
+Comprehensive event creation form with name, description, pricing, scheduling, location, and image upload capabilities.
 
 ---
 
