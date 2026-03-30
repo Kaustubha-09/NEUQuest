@@ -3,6 +3,7 @@ package edu.northeastern.numad24su_group9.model;
 import androidx.annotation.NonNull;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Trip implements Serializable {
@@ -117,6 +118,9 @@ public class Trip implements Serializable {
     }
 
     public void addEventID(String eventID) {
+        if (this.eventIDs == null) {
+            this.eventIDs = new ArrayList<>();
+        }
         this.eventIDs.add(eventID);
     }
 
@@ -139,6 +143,6 @@ public class Trip implements Serializable {
     @NonNull
     @Override
     public String toString() {
-        return "Trip ID: " + tripID + "Min Budget: " + minBudget + "Max Budget: " + maxBudget + "Meals Included: " + mealsIncluded + "Transport Included: " + transportIncluded + "Event IDs: " + eventIDs + "Start Date: " + startDate + "Start Time: " + startTime + "End Date: " + endDate + "End Time: " + endTime + "Location: " + location;
+        return "Trip ID: " + tripID + ", Min Budget: " + minBudget + ", Max Budget: " + maxBudget + ", Meals Included: " + mealsIncluded + ", Transport Included: " + transportIncluded + ", Event IDs: " + eventIDs + ", Start Date: " + startDate + ", Start Time: " + startTime + ", End Date: " + endDate + ", End Time: " + endTime + ", Location: " + location;
     }
 }

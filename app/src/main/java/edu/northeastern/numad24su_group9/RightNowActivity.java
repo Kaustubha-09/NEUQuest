@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,6 +48,7 @@ public class RightNowActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private FloatingActionButton registerEventButton;
     private String uid;
+    private ThreadPoolExecutor executor;
 
     private long backPressedTime;
     private Toast backToast;
@@ -59,29 +58,20 @@ public class RightNowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_right_now);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(AppConstants.PREFS_USER_INFO, Context.MODE_PRIVATE);
         uid = sharedPreferences.getString(AppConstants.UID_KEY, "");
 
-        // Find the views
         progressBar = findViewById(R.id.progressBar);
         recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setItemViewCacheSize(20); // Cache 20 views in memory
+        recyclerView.setItemViewCacheSize(AppConstants.RECYCLER_VIEW_CACHE_SIZE);
         recyclerView.setDrawingCacheEnabled(true);
         recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
-        registerEventButton = findViewById(R.id.register_event_button); // Initialize the FloatingActionButton
+        registerEventButton = findViewById(R.id.register_event_button);
         SearchView searchView = findViewById(R.id.RightNowSearchView);
 
         if (progressBar == null) {
             Log.e("RightNowActivity", "progressBar is null");
-        }
-        registerEventButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, RegisterEventActivity.class);
-            startActivity(intent);
-            finish();
-        });
-        if (searchView == null) {
-            Log.e("RightNowActivity", "searchView is null");
         }
 
         // Set up Bottom Navigation
@@ -108,7 +98,6 @@ public class RightNowActivity extends AppCompatActivity {
             });
         }
 
-        // Set click listeners for the buttons
         if (registerEventButton != null) {
             registerEventButton.setOnClickListener(v -> {
                 Intent intent = new Intent(this, RegisterEventActivity.class);
@@ -133,6 +122,10 @@ public class RightNowActivity extends AppCompatActivity {
                 }
             });
         }
+
+        int numThreads = Runtime.getRuntime().availableProcessors();
+        executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(numThreads);
+
         if (savedInstanceState != null) {
             allEvents = (List<Event>) savedInstanceState.getSerializable("allEvents");
             backPressedTime = savedInstanceState.getLong("backPressedTime");
@@ -145,7 +138,6 @@ public class RightNowActivity extends AppCompatActivity {
     }
 
     public void getEvents() {
-
         new Thread(() -> {
             allEvents = new ArrayList<>();
             EventRepository eventRepository = new EventRepository();
@@ -155,7 +147,6 @@ public class RightNowActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot eventSnapshot : dataSnapshot.getChildren()) {
                         Event event = new Event();
-                        // Populate the event object
                         event.setEventID(eventSnapshot.getKey());
                         event.setTitle(eventSnapshot.child("title").getValue(String.class));
                         event.setImage(eventSnapshot.child("image").getValue(String.class));
@@ -170,20 +161,14 @@ public class RightNowActivity extends AppCompatActivity {
                         event.setIsReported(eventSnapshot.child("isReported").getValue(Boolean.class));
                         allEvents.add(event);
                     }
-
-                    // Update the UI on the main thread
                     runOnUiThread(this::getUserRegistrationPattern);
                 }
-            }).addOnFailureListener(e -> {
-                // Handle the failure case on the main thread
-                runOnUiThread(e::printStackTrace);
-            });
+            }).addOnFailureListener(e -> runOnUiThread(e::printStackTrace));
         }).start();
     }
 
-    // Get user registration pattern from firebase
     private void getUserRegistrationPattern() {
-        Runnable getUserRegistrationPatternTask = () -> {
+        new Thread(() -> {
             User user = new User();
             user.setUserID(uid);
 
@@ -204,17 +189,10 @@ public class RightNowActivity extends AppCompatActivity {
                     }
                     generateEventRecommendations(eventsAttendedIDs, userInterests);
                 }
-            }).addOnFailureListener(e -> {
-                // Handle any exceptions that occur during the database query
-                Log.e("UserRepository", "Error retrieving user data: " + e.getMessage());
-            });
-        };
-
-        // Post the getUserRegistrationPatternTask to the same background thread as getEvents()
-        new Thread(getUserRegistrationPatternTask).start();
+            }).addOnFailureListener(e -> Log.e("UserRepository", "Error retrieving user data: " + e.getMessage()));
+        }).start();
     }
 
-    // Generate event recommendations based on user registration pattern
     private void generateEventRecommendations(List<String> eventsAttendedIDs, List<String> userInterests) {
         List<String> eventsAttended = new ArrayList<>();
         List<Event> recommendedEvents = new ArrayList<>();
@@ -227,15 +205,9 @@ public class RightNowActivity extends AppCompatActivity {
             }
         }
 
-        // Ask Gemini to provide event recommendations
-        // Create a ThreadPoolExecutor
-        int numThreads = Runtime.getRuntime().availableProcessors();
-        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(numThreads);
-
         GeminiClient geminiClient = new GeminiClient();
         ListenableFuture<GenerateContentResponse> response = geminiClient.generateResult("Can you recommend the events that the user would like based on the user's already registered events? The user likes the following events " + eventsAttended + "and these are the events we have:" + allEvents + "and the user interests are " + userInterests);
 
-        // Generate trip name using Gemini API
         Futures.addCallback(response, new FutureCallback<GenerateContentResponse>() {
             @SuppressLint("RestrictedApi")
             @Override
@@ -264,13 +236,11 @@ public class RightNowActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
-                // Handle the failure on the main thread
                 Log.e("RecommendationAlgorithm", "Error: " + t.getMessage());
             }
         }, executor);
     }
 
-    // Extract event titles from the Gemini response
     public static List<String> extractTitles(String input) {
         List<String> titles = new ArrayList<>();
         Pattern pattern = Pattern.compile("\\*\\*(.+?)\\:\\*\\*");
@@ -296,32 +266,24 @@ public class RightNowActivity extends AppCompatActivity {
         recyclerView.setAdapter(eventAdapter);
     }
 
+    // Filtering is an in-memory operation — no background thread needed.
     private void filterEvents(String query) {
-        HandlerThread handlerThread = new HandlerThread("FilterEventsThread");
-        handlerThread.start();
-        Handler handler = new Handler(handlerThread.getLooper());
-
-        handler.post(() -> {
-            List<Event> filteredEvents = new ArrayList<>();
-            for (Event event : allEvents) {
-                if (event.getTitle().toLowerCase().contains(query.toLowerCase()) ||
-                        event.getDescription().toLowerCase().contains(query.toLowerCase())) {
-                    filteredEvents.add(event);
-                }
+        if (allEvents == null) return;
+        List<Event> filteredEvents = new ArrayList<>();
+        for (Event event : allEvents) {
+            if (event.getTitle().toLowerCase().contains(query.toLowerCase()) ||
+                    event.getDescription().toLowerCase().contains(query.toLowerCase())) {
+                filteredEvents.add(event);
             }
-
-            // Update the UI on the main thread
-            runOnUiThread(() -> {
-                eventAdapter.updateData(filteredEvents);
-                recyclerView.setAdapter(eventAdapter);
-            });
-        });
+        }
+        eventAdapter.updateData(filteredEvents);
+        recyclerView.setAdapter(eventAdapter);
     }
 
     @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
-        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+        if (backPressedTime + AppConstants.BACK_PRESS_INTERVAL_MS > System.currentTimeMillis()) {
             if (backToast != null) backToast.cancel();
             moveTaskToBack(true);
         } else {
@@ -334,7 +296,6 @@ public class RightNowActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        // Save any necessary data
         outState.putSerializable("allEvents", new ArrayList<>(allEvents));
         outState.putLong("backPressedTime", backPressedTime);
     }
@@ -342,11 +303,18 @@ public class RightNowActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        // Restore the saved data
         if (savedInstanceState != null) {
             allEvents = (List<Event>) savedInstanceState.getSerializable("allEvents");
             backPressedTime = savedInstanceState.getLong("backPressedTime");
-            updateUI(allEvents); // Make sure to update the UI with restored data
+            updateUI(allEvents);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (executor != null) {
+            executor.shutdownNow();
         }
     }
 }

@@ -68,7 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
     private UserProfileRepository userProfileRepo;
     private TextView userNameTextView;
     private List<Trip> trips;
-    private static final int REQUEST_CAMERA_PERMISSION = 100;
+    private static final int REQUEST_CAMERA_PERMISSION = AppConstants.REQUEST_CAMERA_PERMISSION;
     private Button adminConsoleButton;
 
     @SuppressLint("SetTextI18n")
@@ -94,7 +94,7 @@ public class ProfileActivity extends AppCompatActivity {
         userProfileImage.setOnClickListener(v -> showImageSourceDialog());
 
         // Get the current user's ID
-        SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(AppConstants.PREFS_USER_INFO, Context.MODE_PRIVATE);
         uid = sharedPreferences.getString(AppConstants.UID_KEY, "");
 
         userRepository = new UserRepository(uid);

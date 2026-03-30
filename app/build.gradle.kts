@@ -17,6 +17,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -30,7 +34,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
 }
 
 dependencies {
@@ -56,10 +59,10 @@ dependencies {
     implementation(libs.guava)
     implementation(libs.vipulasri.timelineview)
     implementation(libs.core.ktx.v190)
-    implementation (libs.appcompat.v170alpha01)
-    implementation (libs.androidx.work.runtime.ktx)
-    implementation (libs.glide)
+    implementation(libs.appcompat.v170alpha01)
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.glide)
 
+    implementation(libs.lifecycle.viewmodel)
+    implementation(libs.lifecycle.livedata)
 }
-
-apply(plugin = "com.google.gms.google-services")

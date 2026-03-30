@@ -165,7 +165,7 @@ public class Event implements Serializable, Comparable<Event>{
     @NonNull
     @Override
     public String toString() {
-        return "Title: " + title + "Description: " + description + "Image: " + image + "Start Time: " + startTime + "End Time: " + endTime + "Start Date: " + startDate + "End Date: " + endDate + "Price: " + price + "Location: " + location + "Register Link: " + registerLink + "Event ID: " + eventID + "Created By: " + createdBy + "Category: " + category;
+        return "Title: " + title + ", Description: " + description + ", Image: " + image + ", Start Time: " + startTime + ", End Time: " + endTime + ", Start Date: " + startDate + ", End Date: " + endDate + ", Price: " + price + ", Location: " + location + ", Register Link: " + registerLink + ", Event ID: " + eventID + ", Created By: " + createdBy + ", Category: " + category;
     }
 
     @Override

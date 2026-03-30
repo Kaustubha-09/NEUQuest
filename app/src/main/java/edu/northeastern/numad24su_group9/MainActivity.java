@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
-        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+        if (backPressedTime + AppConstants.BACK_PRESS_INTERVAL_MS > System.currentTimeMillis()) {
             if (backToast != null) backToast.cancel();
             moveTaskToBack(true);
         } else {

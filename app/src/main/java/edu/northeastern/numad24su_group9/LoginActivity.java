@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
 
-                                SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
+                                SharedPreferences sharedPreferences = getSharedPreferences(AppConstants.PREFS_USER_INFO, MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString(AppConstants.UID_KEY, uid);
                                 editor.putString(AppConstants.USER_NAME, user.getDisplayName());

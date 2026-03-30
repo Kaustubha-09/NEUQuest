@@ -18,13 +18,10 @@ public class GeminiClient {
     }
 
     public ListenableFuture<GenerateContentResponse> generateResult(String query) {
-        GeminiClient geminiClient = new GeminiClient();
-
         Content content = new Content.Builder()
                 .addText(query)
                 .build();
 
-        // Get the ListenableFuture from the model
-        return geminiClient.getModel().generateContent(content);
+        return model.generateContent(content);
     }
 }

@@ -3,28 +3,31 @@ package edu.northeastern.numad24su_group9.recycler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import edu.northeastern.numad24su_group9.R;
 import edu.northeastern.numad24su_group9.model.Comment;
 
-public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.CommentViewHolder> {
+public class CommentsAdapter extends ListAdapter<Comment, CommentsAdapter.CommentViewHolder> {
 
-    private List<Comment> commentsList;
-
-    public CommentsAdapter(List<Comment> commentsList) {
-        this.commentsList = commentsList;
+    public CommentsAdapter() {
+        super(DIFF_CALLBACK);
     }
 
-    public void updateList(List<Comment> commentsList) {
-        this.commentsList = commentsList;
+    /** Submit a new list — DiffUtil computes the diff on a background thread. */
+    public void updateList(List<Comment> comments) {
+        submitList(comments);
     }
 
     @NonNull
@@ -37,36 +40,41 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
 
     @Override
     public void onBindViewHolder(@NonNull CommentViewHolder holder, int position) {
-        Comment comment = commentsList.get(position);
+        Comment comment = getItem(position);
         holder.commentText.setText(comment.getCommentText());
-        holder.commenterName.setText(comment.getCommenterName()); // Assuming you want to show the comment ID as the name
+        holder.commenterName.setText(comment.getCommenterName());
         holder.commentTimestamp.setText(formatTimestamp(comment.getTimestamp()));
-
-        // If you have a way to load avatar images, use Picasso or Glide here
-        // For now, let's assume a placeholder image is set.
-        //Picasso.get().load(R.drawable.ic_profile).into(holder.commentAvatar);
-    }
-
-    @Override
-    public int getItemCount() {
-        return commentsList.size();
     }
 
     public static class CommentViewHolder extends RecyclerView.ViewHolder {
-        TextView commenterName, commentTimestamp, commentText;
-        ImageView commentAvatar;
+        final TextView commenterName;
+        final TextView commentTimestamp;
+        final TextView commentText;
 
         public CommentViewHolder(@NonNull View itemView) {
             super(itemView);
             commenterName = itemView.findViewById(R.id.commenter_name);
             commentTimestamp = itemView.findViewById(R.id.comment_timestamp);
             commentText = itemView.findViewById(R.id.comment_text);
-            //commentAvatar = itemView.findViewById(R.id.comment_avatar);
         }
     }
 
-    private String formatTimestamp(long timestamp) {
+    private static String formatTimestamp(long timestamp) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
         return sdf.format(new Date(timestamp));
     }
+
+    private static final DiffUtil.ItemCallback<Comment> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<Comment>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull Comment oldItem, @NonNull Comment newItem) {
+                    return Objects.equals(oldItem.getCommentId(), newItem.getCommentId());
+                }
+
+                @Override
+                public boolean areContentsTheSame(@NonNull Comment oldItem, @NonNull Comment newItem) {
+                    return Objects.equals(oldItem.getCommentText(), newItem.getCommentText())
+                            && oldItem.getTimestamp() == newItem.getTimestamp();
+                }
+            };
 }

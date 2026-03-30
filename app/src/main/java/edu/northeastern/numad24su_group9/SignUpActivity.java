@@ -61,13 +61,18 @@ public class SignUpActivity extends AppCompatActivity {
         userRef.setValue(currentUser);
     }
 
+    static boolean isValidNeuEmail(String email) {
+        return email.endsWith(AppConstants.NEU_EMAIL_DOMAIN)
+                || email.endsWith(AppConstants.NEU_HUSKY_EMAIL_DOMAIN);
+    }
+
     private void handleSignUp() {
         name = nameEditText.getText().toString().trim();
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
         campus = campusSpinner.getSelectedItem().toString();
 
-        if (!email.endsWith("@northeastern.edu") && !email.endsWith("@husky.neu.edu")) {
+        if (!isValidNeuEmail(email)) {
             Toast.makeText(SignUpActivity.this, "We only accept 'northeastern.edu' email ids", Toast.LENGTH_LONG).show();
             return;
         }
@@ -89,7 +94,7 @@ public class SignUpActivity extends AppCompatActivity {
                                                             Toast.makeText(SignUpActivity.this, "Verification email sent. Please check your inbox.", Toast.LENGTH_SHORT).show();
                                                             uid = user.getUid();
 
-                                                            SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
+                                                            SharedPreferences sharedPreferences = getSharedPreferences(AppConstants.PREFS_USER_INFO, MODE_PRIVATE);
                                                             SharedPreferences.Editor editor = sharedPreferences.edit();
                                                             editor.putString(AppConstants.UID_KEY, uid);
                                                             editor.putString(AppConstants.USER_NAME, name);

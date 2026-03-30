@@ -109,7 +109,7 @@ public class AddEventsActivity extends AppCompatActivity {
             }
             trip.setEventIDs(selectedEventIDs);
 
-            SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences(AppConstants.PREFS_USER_INFO, Context.MODE_PRIVATE);
             String uid = sharedPreferences.getString(AppConstants.UID_KEY, "");
 
             // Get a reference to the user's data in the database
@@ -124,8 +124,6 @@ public class AddEventsActivity extends AppCompatActivity {
             tripRef.setValue(trip);
 
             Toast.makeText(this, "Trip saved successfully", Toast.LENGTH_SHORT).show();
-            finish();
-
             Intent intent = new Intent(AddEventsActivity.this, RightNowActivity.class);
             startActivity(intent);
             finish();

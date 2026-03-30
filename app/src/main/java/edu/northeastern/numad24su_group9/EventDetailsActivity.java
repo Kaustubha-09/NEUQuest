@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -41,13 +39,16 @@ import edu.northeastern.numad24su_group9.model.Event;
 import edu.northeastern.numad24su_group9.recycler.CommentsAdapter;
 
 
-// Comments will not post :(
 public class EventDetailsActivity extends AppCompatActivity {
+
+    private static final String TAG = "EventDetailsActivity";
 
     private String previousActivity;
     private RecyclerView commentsRecyclerView;
     private CommentsAdapter commentsAdapter;
-    private List<Comment> commentsList = new ArrayList<>();
+    // Held as fields so the listener can be unregistered in onStop().
+    private DatabaseReference commentsRef;
+    private ValueEventListener commentsListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +91,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         // Initialize the RecyclerView for comments
         commentsRecyclerView = findViewById(R.id.comments_recyclerview);
         commentsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        commentsAdapter = new CommentsAdapter(commentsList);
+        commentsAdapter = new CommentsAdapter();
         commentsRecyclerView.setAdapter(commentsAdapter);
 
         Event event = (Event) getIntent().getSerializableExtra("event");
@@ -110,8 +111,9 @@ public class EventDetailsActivity extends AppCompatActivity {
         // Load comments from the database
         loadComments(event.getEventID());
 
-        // Hide the report button if the event is already reported
-        if(event.getIsReported()) {
+        // Hide the report button if the event is already reported.
+        // getIsReported() returns a nullable Boolean; use Boolean.TRUE.equals to avoid NPE.
+        if (Boolean.TRUE.equals(event.getIsReported())) {
             alreadyReported.setVisibility(View.VISIBLE);
             reportButton.setVisibility(View.GONE);
         }
@@ -131,7 +133,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         EventImageRepository eventImageRepository = new EventImageRepository();
         Picasso.get().load(eventImageRepository.getEventImage(event.getImage())).into(eventImageView);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(AppConstants.PREFS_USER_INFO, Context.MODE_PRIVATE);
         String uid = sharedPreferences.getString(AppConstants.UID_KEY, "");
 
         UserRepository userRepository = new UserRepository(uid);
@@ -225,7 +227,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     private void addCommentToDatabase(String eventId, String commentText) {
         // Get a reference to the comments section in the Firebase database
         DatabaseReference commentsRef = DatabaseConnector.getInstance().getEventsReference().child(eventId).child("comments");
-        SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(AppConstants.PREFS_USER_INFO, Context.MODE_PRIVATE);
         String commenterName = sharedPreferences.getString(AppConstants.USER_NAME, "");
 
         // Generate a unique ID for the new comment
@@ -249,44 +251,39 @@ public class EventDetailsActivity extends AppCompatActivity {
     }
 
     private void loadComments(String eventId) {
-        HandlerThread handlerThread = new HandlerThread("CommentsHandlerThread");
-        handlerThread.start();
-        Handler handler = new Handler(handlerThread.getLooper());
-
-        handler.post(() -> {
-            DatabaseReference commentsRef = DatabaseConnector.getInstance().getEventsReference().child(eventId).child("comments");
-
-            commentsRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    List<Comment> newCommentsList = new ArrayList<>();
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Comment comment = new Comment();
-                        comment.setCommentId(snapshot.child("commentId").getValue(String.class));
-                        comment.setCommentText(snapshot.child("commentText").getValue(String.class));
-                        comment.setTimestamp(snapshot.child("timestamp").getValue(Long.class));
-                        comment.setCommenterName(snapshot.child("commenterName").getValue(String.class));
-                        newCommentsList.add(0, comment);
-                    }
-
-                    // Update the UI on the main thread
-                    runOnUiThread(() -> {
-                        commentsList.clear();
-                        commentsList.addAll(newCommentsList);
-                        commentsAdapter.updateList(commentsList);
-                        commentsRecyclerView.setAdapter(commentsAdapter);
-                    });
+        // Store refs as fields so we can unregister in onStop() and avoid leaking the listener.
+        commentsRef = DatabaseConnector.getInstance().getEventsReference().child(eventId).child("comments");
+        commentsListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<Comment> newCommentsList = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Comment comment = new Comment();
+                    comment.setCommentId(snapshot.child("commentId").getValue(String.class));
+                    comment.setCommentText(snapshot.child("commentText").getValue(String.class));
+                    Long ts = snapshot.child("timestamp").getValue(Long.class);
+                    comment.setTimestamp(ts != null ? ts : 0L);
+                    comment.setCommenterName(snapshot.child("commenterName").getValue(String.class));
+                    newCommentsList.add(0, comment);
                 }
+                commentsAdapter.updateList(newCommentsList);
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    // Handle the failure case on the main thread
-                    runOnUiThread(() -> {
-                        Log.e("EventDetailsActivity", "Failed to load comments.", databaseError.toException());
-                    });
-                }
-            });
-        });
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "Failed to load comments.", databaseError.toException());
+            }
+        };
+        commentsRef.addValueEventListener(commentsListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // Unregister the persistent listener to prevent memory leaks.
+        if (commentsRef != null && commentsListener != null) {
+            commentsRef.removeEventListener(commentsListener);
+        }
     }
 
     @Override

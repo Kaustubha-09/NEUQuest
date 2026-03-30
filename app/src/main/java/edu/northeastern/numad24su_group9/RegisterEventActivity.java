@@ -57,7 +57,7 @@ public class RegisterEventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_event);
 
         // Get the SharedPreferences instance
-        SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(AppConstants.PREFS_USER_INFO, MODE_PRIVATE);
         uid = sharedPreferences.getString(AppConstants.UID_KEY, "");
 
         eventID = String.valueOf(System.currentTimeMillis());

@@ -37,6 +37,7 @@ public class PlanningTripActivity extends AppCompatActivity {
     private CheckBox mealsCheckbox, transportCheckbox;
     private Button submitButton;
     private String minBudget, maxBudget, mealsIncluded, transportIncluded, location, startDate, endDate, startTime, endTime;
+    private ThreadPoolExecutor executor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,9 @@ public class PlanningTripActivity extends AppCompatActivity {
         setupBudgetSlider();
         setupSubmitButton();
         setupDateTimePicker();
+
+        int numThreads = Runtime.getRuntime().availableProcessors();
+        executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(numThreads);
 
         // Set up Bottom Navigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -79,7 +83,6 @@ public class PlanningTripActivity extends AppCompatActivity {
     }
 
     private void setupDateTimePicker() {
-        // Set click listeners for the date and time edit text views
         eventStartDateEditText.setOnClickListener(v -> showDatePicker(eventStartDateEditText));
         eventStartTimeEditText.setOnClickListener(v -> showTimePicker(eventStartTimeEditText));
         eventEndDateEditText.setOnClickListener(v -> showDatePicker(eventEndDateEditText));
@@ -87,59 +90,48 @@ public class PlanningTripActivity extends AppCompatActivity {
     }
 
     private void showDatePicker(TextInputEditText editText) {
-        // Get the current date
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        // Create a DatePickerDialog
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
                 (view, selectedYear, selectedMonth, selectedDay) -> {
-                    // Format the selected date as a string
                     String selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%d", selectedDay, selectedMonth + 1, selectedYear);
-
-                    // Set the selected date value in the TextView
                     editText.setText(selectedDate);
                 },
                 year, month, day
         );
-
-        // Show the date picker dialog
         datePickerDialog.show();
     }
 
     private void showTimePicker(TextInputEditText editText) {
-        // Get the current time
         Calendar calendar = Calendar.getInstance();
         int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
         int currentMinute = calendar.get(Calendar.MINUTE);
 
-        // Create a TimePickerDialog
         TimePickerDialog timePickerDialog = new TimePickerDialog(
                 this,
                 (view, selectedHour, selectedMinute) -> {
-                    // Format the selected time as a string
                     String selectedTime = String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute);
-
-                    // Set the selected time value in the TextView
                     editText.setText(selectedTime);
                 },
-                currentHour, currentMinute, true // true for 24-hour format
+                currentHour, currentMinute, true
         );
-
-        // Show the time picker dialog
         timePickerDialog.show();
     }
 
     @SuppressLint("SetTextI18n")
     private void setupBudgetSlider() {
+        // Set range before reading values so slider is in a valid state.
+        budgetRangeSlider.setValueFrom(AppConstants.BUDGET_SLIDER_MIN);
+        budgetRangeSlider.setValueTo(AppConstants.BUDGET_SLIDER_MAX);
+        budgetRangeSlider.setStepSize(AppConstants.BUDGET_SLIDER_STEP);
+
         minBudget = String.valueOf(budgetRangeSlider.getValues().get(0));
         maxBudget = String.valueOf(budgetRangeSlider.getValues().get(1));
-        budgetRangeSlider.setValueFrom(0f);
-        budgetRangeSlider.setValueTo(1000f);
-        budgetRangeSlider.setStepSize(50f);
+
         budgetRangeSlider.addOnChangeListener((slider, value, fromUser) -> {
             minBudgetTextView.setText("$" + slider.getValues().get(0));
             maxBudgetTextView.setText("$" + slider.getValues().get(1));
@@ -149,10 +141,6 @@ public class PlanningTripActivity extends AppCompatActivity {
     private void setupSubmitButton() {
         submitButton.setOnClickListener(v -> {
             Trip trip = new Trip();
-
-            // Create a ThreadPoolExecutor
-            int numThreads = Runtime.getRuntime().availableProcessors();
-            ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(numThreads);
 
             GeminiClient geminiClient = new GeminiClient();
             if (eventLocationEditText.getText().toString().isEmpty()) {
@@ -166,7 +154,6 @@ public class PlanningTripActivity extends AppCompatActivity {
 
             ListenableFuture<GenerateContentResponse> response = geminiClient.generateResult("Give me just one trip name for a trip starting on " + Objects.requireNonNull(eventStartTimeEditText.getText()) + " to " + eventLocationEditText.getText().toString());
 
-            // Generate trip name using Gemini API
             Futures.addCallback(response, new FutureCallback<GenerateContentResponse>() {
                 @SuppressLint("RestrictedApi")
                 @Override
@@ -195,7 +182,6 @@ public class PlanningTripActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(@NonNull Throwable t) {
-                    // Handle the failure on the main thread
                     Log.e("TripAdapter", "Error: " + t.getMessage());
                 }
             }, executor);
@@ -219,14 +205,39 @@ public class PlanningTripActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        budgetRangeSlider.setValues(Float.parseFloat(minBudget), Float.parseFloat(maxBudget));
-        mealsCheckbox.setChecked(Boolean.parseBoolean(mealsIncluded));
-        transportCheckbox.setChecked(Boolean.parseBoolean(transportIncluded));
-        eventLocationEditText.setText(location);
-        eventStartDateEditText.setText(startDate);
-        eventEndDateEditText.setText(endDate);
-        eventStartTimeEditText.setText(startTime);
-        eventEndTimeEditText.setText(endTime);
+        // Fields are null on first launch (onPause has not run yet); guard before parsing.
+        if (minBudget != null && maxBudget != null) {
+            budgetRangeSlider.setValues(Float.parseFloat(minBudget), Float.parseFloat(maxBudget));
+        }
+        if (mealsIncluded != null) {
+            mealsCheckbox.setChecked(Boolean.parseBoolean(mealsIncluded));
+        }
+        if (transportIncluded != null) {
+            transportCheckbox.setChecked(Boolean.parseBoolean(transportIncluded));
+        }
+        if (location != null) {
+            eventLocationEditText.setText(location);
+        }
+        if (startDate != null) {
+            eventStartDateEditText.setText(startDate);
+        }
+        if (endDate != null) {
+            eventEndDateEditText.setText(endDate);
+        }
+        if (startTime != null) {
+            eventStartTimeEditText.setText(startTime);
+        }
+        if (endTime != null) {
+            eventEndTimeEditText.setText(endTime);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (executor != null) {
+            executor.shutdownNow();
+        }
     }
 
     @Override

@@ -10,30 +10,34 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import edu.northeastern.numad24su_group9.R;
 import edu.northeastern.numad24su_group9.firebase.repository.database.EventRepository;
 import edu.northeastern.numad24su_group9.firebase.repository.storage.EventImageRepository;
 import edu.northeastern.numad24su_group9.model.Event;
 
-public class AdminConsoleAdapter extends RecyclerView.Adapter<AdminConsoleAdapter.ViewHolder> {
-    private List<Event> events;
-    private EventAdapter.OnItemClickListener listener;
-    private EventAdapter.OnItemSelectListener selectListener;
-    private Context context;
+public class AdminConsoleAdapter extends ListAdapter<Event, AdminConsoleAdapter.ViewHolder> {
+
+    private final Context context;
 
     public AdminConsoleAdapter(Context context) {
+        super(DIFF_CALLBACK);
         this.context = context;
     }
 
+    /** Submit a new list — DiffUtil computes the diff on a background thread. */
     public void updateData(List<Event> events) {
-        this.events = events;
+        submitList(events);
     }
 
     @NonNull
@@ -46,62 +50,57 @@ public class AdminConsoleAdapter extends RecyclerView.Adapter<AdminConsoleAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Event event = events.get(position);
+        Event event = getItem(position);
 
-        EventImageRepository eventImageRepository = new EventImageRepository();
-
-        if (holder.imageView.getTag() == null || !holder.imageView.getTag().equals(event.getImage())) {
+        if (!Objects.equals(holder.imageView.getTag(), event.getImage())) {
             Glide.with(holder.imageView.getContext())
-                    .load(eventImageRepository.getEventImage(event.getImage()))
+                    .load(new EventImageRepository().getEventImage(event.getImage()))
                     .placeholder(R.drawable.placeholder_image)
                     .override(300, 300)
                     .into(holder.imageView);
             holder.imageView.setTag(event.getImage());
-        }        holder.titleTextView.setText(event.getTitle());
+        }
+
+        holder.titleTextView.setText(event.getTitle());
         holder.descriptionTextView.setText(event.getDescription());
+
         holder.approveButton.setOnClickListener(v -> {
+            int pos = holder.getAdapterPosition();
+            if (pos == RecyclerView.NO_ID) return;
             event.setIsReported(false);
             EventRepository eventRepository = new EventRepository();
             DatabaseReference eventRef = eventRepository.getEventRef().child(event.getEventID());
             eventRef.setValue(event);
-            // Remove the event from the list
-            events.remove(position);
-            // Notify the adapter that the item has been removed
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, events.size());});
+            removeAt(pos);
+        });
 
-        // Delete the event from the database
         holder.rejectButton.setOnClickListener(v -> {
+            int pos = holder.getAdapterPosition();
+            if (pos == RecyclerView.NO_ID) return;
             EventRepository eventRepository = new EventRepository();
             DatabaseReference eventRef = eventRepository.getEventRef().child(event.getEventID());
             eventRef.removeValue()
                     .addOnSuccessListener(aVoid -> {
-                        // Handle success
-                        // Remove the event from the list
-                        events.remove(position);
-                        // Notify the adapter that the item has been removed
-                        notifyItemRemoved(position);
-                        notifyItemRangeChanged(position, events.size());
+                        removeAt(pos);
                         Toast.makeText(context, "Event deleted successfully", Toast.LENGTH_LONG).show();
                     })
-                    .addOnFailureListener(e -> {
-                        // Handle failure
-                        Toast.makeText(context, "Failed to delete event", Toast.LENGTH_LONG).show();
-                    });
-            ;         });
+                    .addOnFailureListener(e ->
+                            Toast.makeText(context, "Failed to delete event", Toast.LENGTH_LONG).show());
+        });
     }
 
-    @Override
-    public int getItemCount() {
-        return events.size();
+    private void removeAt(int adapterPosition) {
+        List<Event> newList = new ArrayList<>(getCurrentList());
+        newList.remove(adapterPosition);
+        submitList(newList);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imageView;
-        public TextView titleTextView;
-        public TextView descriptionTextView;
-        public Button approveButton;
-        public Button rejectButton;
+        public final ImageView imageView;
+        public final TextView titleTextView;
+        public final TextView descriptionTextView;
+        public final Button approveButton;
+        public final Button rejectButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -112,4 +111,18 @@ public class AdminConsoleAdapter extends RecyclerView.Adapter<AdminConsoleAdapte
             rejectButton = itemView.findViewById(R.id.remove_event_button);
         }
     }
+
+    private static final DiffUtil.ItemCallback<Event> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<Event>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull Event oldItem, @NonNull Event newItem) {
+                    return Objects.equals(oldItem.getEventID(), newItem.getEventID());
+                }
+
+                @Override
+                public boolean areContentsTheSame(@NonNull Event oldItem, @NonNull Event newItem) {
+                    return Objects.equals(oldItem.getTitle(), newItem.getTitle())
+                            && Objects.equals(oldItem.getIsReported(), newItem.getIsReported());
+                }
+            };
 }
