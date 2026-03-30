@@ -342,7 +342,7 @@ Location-based event discovery with dual location selector, prominent event card
 
 **Prototype 2: Deals & Events Feed**
 
-<img src="docs/images/Screenshot_2026-01-24_at_3.29.47_PM-6fa3edf1-e760-4dd9-96a6-c50092a050af.png" alt="Prototype 2 - Deals Feed" width="200"/>
+<img src="docs/images/Screenshot_2026-01-24_at_3.29.47_PM-6fa3edf1-e760-4dd9-96a6-c30092a050af.png" alt="Prototype 2 - Deals Feed" width="200"/>
 
 Student-focused deals feed with search bar, interest-based filters, and vertical cards showcasing student discounts, events, and grocery deals with action buttons.
 
