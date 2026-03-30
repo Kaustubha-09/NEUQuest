@@ -17,91 +17,92 @@ NEUQuest is specifically designed for budget travelers enrolled at Northeastern 
 ### 🎯 Areas of Deep Exploration
 
 #### 1. Dynamic User Types and Roles
-- Implement different user types and admin roles to manage and dynamically affect shared data
+- Different user types and admin roles to manage and dynamically affect shared data
 - Role-based access control for content management
 - Admin dashboard for platform oversight
 - Collaborative planning with multiple users working on shared travel plans
 - Real-time editing, commenting, and task assignment capabilities
 
 #### 2. Messaging System
-- Enable users to report suspicious content directly to admin roles for quick action
+- Users can report suspicious content directly to admin roles for quick action
 - Real-time communication between users and administrators
 - Content moderation workflow
 
 #### 3. Personalized Recommendations
-- Use user-selected interests to recommend events and activities that match preferences
+- User-selected interests drive event and activity recommendations
 - Interest-based event discovery
 - Tailored travel destination suggestions
-- Dietary requirement filtering for dining options
+- AI-powered feed ranking via Google Gemini
 
 #### 4. Event Details and Budgeting
-- Incorporate event details such as location and cost to recommend trips that fit user budgets
+- Event details (location, cost) matched to user budget ranges
 - Budget-conscious trip planning with min/max budget settings
 - Include/exclude meals and transportation in budget calculations
 - Automatic event matching based on trip dates, location, and budget constraints
 
 #### 5. User Engagement
-- Track events that users find interesting to algorithmically fine-tune their home feed
-- Enhanced engagement through personalized content curation
-- User behavior analytics for improved recommendations
+- Track events users register for to algorithmically fine-tune their home feed
+- Personalized content curation powered by Gemini
+- Comment system for community engagement
 
 ### 🔐 User Authentication & Profiles
-- Secure Firebase Authentication with email verification
-- User profile management with customizable interests
-- Interest-based event recommendations
+- Secure Firebase Authentication with mandatory email verification
+- User profile management with customizable interests and campus selection
+- Profile photo upload from camera or gallery
 - Email verification reminders
 
 ### 🎪 Event & Destination Discovery
-- **Right Now**: Discover events happening in real-time
+- **Right Now**: Discover events happening in real-time with AI-ranked feed
 - **Explore**: Browse events by category (Art, Nature, Photography, Travel, Music, Movies, Food, Sports)
 - Event details with images, location, pricing, and registration links
-- Affordable travel destination recommendations
-- Dining options with dietary requirement filters
 - Comment system for community engagement
-- Event reporting and moderation
+- Event reporting and admin moderation
 
 ### 🗺️ Trip Planning
 - Create personalized trips with date ranges and locations
-- Budget management with min/max budget settings
+- Budget management with min/max budget range slider
 - Include/exclude meals and transportation in budget calculations
 - Automatic event matching based on trip dates and location
 - Timeline view for visualizing trip schedules
 - Add multiple events to a single trip
-- Exclusive student deals integration
-- **Collaborative Planning**: Multiple users can work together on developing travel plans with real-time editing, commenting, task assignment, and version control
+- AI-generated trip names via Google Gemini
 
 ### 🛠️ Admin Features
 - Admin console for event moderation
-- User and content management capabilities
-- Messaging system for user reports
+- Approve or remove reported events
+- Role-based admin access controlled at signup
 
 ---
 
 ## 🛠️ Technology Stack
 
 ### Core Technologies
-- **Language**: Java
-- **Platform**: Android (API 27+)
-- **Build System**: Gradle with Kotlin DSL
-- **Architecture**: MVC Pattern
+| Area | Technology |
+|------|-----------|
+| Language | Java 8 |
+| Platform | Android API 27+ (Target API 34) |
+| Build System | Gradle with Kotlin DSL |
+| Architecture | MVC with MVVM infrastructure (ViewBinding + Lifecycle) |
 
 ### Backend & Services
-- **Firebase**: User accounts, data syncing, and sharing tools
-  - Firebase Authentication: User authentication and email verification
-  - Firebase Realtime Database: Real-time data synchronization
-  - Firebase Storage: Image storage and management
+| Service | Usage |
+|---------|-------|
+| Firebase Authentication | Email/password auth, email verification |
+| Firebase Realtime Database | Real-time data sync with offline persistence |
+| Firebase Storage | Event and profile image storage |
+| Google Gemini 1.5 Flash | AI trip naming and event recommendations |
 
 ### Libraries & Dependencies
-- **Retrofit**: For making web service calls and fetching data easily
-- **Room Database**: To store and manage app data locally on the user's device
-- **RxJava/RxAndroid**: For handling asynchronous data and events
-- **Glide**: For loading and displaying images quickly
-- **Material Design Components**: To ensure a consistent look and feel with Android's official UI components and guidelines
-- **Gson**: For converting web service data into Java objects
-- **Dagger 2**: For managing the different components and parts of the app
-- **Espresso**: For testing the app to ensure it works as expected
-- **AndroidX Libraries**: AppCompat, ConstraintLayout, CoordinatorLayout
-- **Work Manager**: Background task scheduling
+| Library | Purpose |
+|---------|---------|
+| Glide | Asynchronous image loading and caching |
+| Picasso | Image loading for profile and event images |
+| Material Design 3 | UI components and theming |
+| VipulaSri TimelineView | Trip itinerary timeline visualization |
+| Guava | Async futures for Gemini API calls |
+| AndroidX Lifecycle | ViewBinding and LiveData infrastructure |
+| WorkManager | Background task scheduling |
+| Espresso / JUnit | UI and unit testing |
 
 ---
 
@@ -110,38 +111,105 @@ NEUQuest is specifically designed for budget travelers enrolled at Northeastern 
 ```
 NEUQuest/
 ├── app/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/edu/northeastern/numad24su_group9/
-│   │   │   │   ├── Activities/
-│   │   │   │   │   ├── MainActivity.java
-│   │   │   │   │   ├── LoginActivity.java
-│   │   │   │   │   ├── SignUpActivity.java
-│   │   │   │   │   ├── RightNowActivity.java
-│   │   │   │   │   ├── PlanningTripActivity.java
-│   │   │   │   │   ├── EventDetailsActivity.java
-│   │   │   │   │   └── ...
-│   │   │   │   ├── model/
-│   │   │   │   │   ├── Event.java
-│   │   │   │   │   ├── Trip.java
-│   │   │   │   │   ├── User.java
-│   │   │   │   │   └── Comment.java
-│   │   │   │   ├── firebase/
-│   │   │   │   │   ├── AuthConnector.java
-│   │   │   │   │   ├── DatabaseConnector.java
-│   │   │   │   │   ├── StorageConnector.java
-│   │   │   │   │   └── repository/
-│   │   │   │   └── recycler/
-│   │   │   │       ├── EventAdapter.java
-│   │   │   │       ├── TripAdapter.java
-│   │   │   │       └── ...
-│   │   │   └── res/
-│   │   │       ├── layout/
-│   │   │       ├── values/
-│   │   │       └── drawable/
-│   │   └── androidTest/
+│   ├── build.gradle.kts
+│   └── src/
+│       ├── main/
+│       │   ├── AndroidManifest.xml
+│       │   └── java/edu/northeastern/numad24su_group9/
+│       │       ├── NEUQuestApplication.java       ← App entry point (Firebase init)
+│       │       ├── MainActivity.java
+│       │       ├── LoginActivity.java
+│       │       ├── SignUpActivity.java
+│       │       ├── RightNowActivity.java
+│       │       ├── PlanningTripActivity.java
+│       │       ├── EventDetailsActivity.java
+│       │       ├── TripDetailsActivity.java
+│       │       ├── ProfileActivity.java
+│       │       ├── InterestsActivity.java
+│       │       ├── RegisterEventActivity.java
+│       │       ├── AddEventsActivity.java
+│       │       ├── AdminConsole.java
+│       │       ├── AppConstants.java
+│       │       ├── NotificationHelper.java
+│       │       ├── CurrencyInputFilter.java
+│       │       ├── model/
+│       │       │   ├── Event.java
+│       │       │   ├── Trip.java
+│       │       │   ├── User.java
+│       │       │   └── Comment.java
+│       │       ├── firebase/
+│       │       │   ├── AuthConnector.java
+│       │       │   ├── DatabaseConnector.java
+│       │       │   ├── StorageConnector.java
+│       │       │   └── repository/
+│       │       │       ├── database/
+│       │       │       │   ├── EventRepository.java
+│       │       │       │   ├── TripRepository.java
+│       │       │       │   └── UserRepository.java
+│       │       │       └── storage/
+│       │       │           ├── EventImageRepository.java
+│       │       │           └── UserProfileRepository.java
+│       │       ├── gemini/
+│       │       │   └── GeminiClient.java
+│       │       └── recycler/
+│       │           ├── EventAdapter.java
+│       │           ├── TripAdapter.java
+│       │           ├── CommentsAdapter.java
+│       │           ├── TimelineEventAdapter.java
+│       │           └── AdminConsoleAdapter.java
+│       └── test/
+│           └── java/.../ExampleUnitTest.java      ← 30 unit tests
 └── gradle/
+    └── libs.versions.toml
 ```
+
+---
+
+## 🔧 Recent Improvements
+
+### Bug Fixes
+| Bug | Fix |
+|-----|-----|
+| `GeminiClient.generateResult()` created a new `GeminiClient` inside itself, ignoring `this` | Fixed to use `model` directly |
+| `PlanningTripActivity.onResume()` crashed with NPE on first launch | Added null guards — `onPause()` hadn't run yet so fields were null |
+| Budget slider read values before `setValueFrom/setValueTo` was configured | Corrected initialization order |
+| `RightNowActivity` set the register-event click listener twice | Removed the duplicate |
+| `AddEventsActivity.confirmSelection()` called `finish()` twice before `startActivity()` | Removed the premature `finish()` |
+| `EventDetailsActivity` auto-unboxed a nullable `Boolean` for `isReported` → NPE | Changed to `Boolean.TRUE.equals(...)` |
+| `Trip.addEventID()` threw NPE when `eventIDs` was null | Lazy-initializes the list |
+| All `toString()` methods missing separators between fields | Added `, ` between every field |
+
+### Performance
+- **DiffUtil in all 5 RecyclerView adapters** — all adapters now extend `ListAdapter<T, VH>` with a `DiffUtil.ItemCallback`. Previously, `updateData()` / `updateTrips()` / `updateList()` set the list without ever calling notify, so the UI never updated unless `setAdapter()` was called again
+- `EventAdapter` — removed unnecessary `ExecutorService` + `Handler` wrapping Glide (Glide handles threading natively)
+- `AdminConsoleAdapter` — fixed stale adapter-position capture in click listeners; now uses `holder.getAdapterPosition()` and `submitList()` for removes
+
+### Memory & Reliability
+- **Firebase listener leak fixed** — `EventDetailsActivity` comments `ValueEventListener` is now stored as a field and unregistered in `onStop()`
+- **`RightNowActivity.filterEvents()`** — replaced a new `HandlerThread` spawned on every keystroke with a simple in-memory filter on the main thread (no I/O — no thread needed)
+- **`ThreadPoolExecutor` lifecycle** — executors in `PlanningTripActivity` and `RightNowActivity` are now fields shut down in `onDestroy()`
+
+### Architecture
+- **`NEUQuestApplication`** — new `Application` class that enables Firebase disk persistence (`setPersistenceEnabled(true)`) for offline support, and initializes the notification channel at startup
+- **`AppConstants`** — converted from an interface (anti-pattern) to a `final class` with a private constructor; added `PREFS_USER_INFO`, `BUDGET_SLIDER_MIN/MAX/STEP`, `BACK_PRESS_INTERVAL_MS`, `RECYCLER_VIEW_CACHE_SIZE`, `REQUEST_CAMERA_PERMISSION`, and NEU email domain constants
+- All `"UserInfo"` SharedPreferences string literals replaced with `AppConstants.PREFS_USER_INFO` across 6 files
+- `User.isAdmin` field visibility fixed from `public` to `private`
+- **ViewBinding** enabled in `build.gradle.kts`
+- **AndroidX Lifecycle** (ViewModel + LiveData) dependencies added
+
+### Code Quality
+- `SignUpActivity` email validation extracted to a static `isValidNeuEmail(String)` method
+- Duplicate `google-services` plugin application removed from `build.gradle.kts`
+- `libs.versions.toml` version string typos fixed (`workRuntimeKtx` had a trailing quote; `work-runtime-ktx` module name had a leading quote)
+
+### Testing
+- `ExampleUnitTest.java` replaced with **30 real unit tests** covering:
+  - `Event.isWithinDateRange` — 8 cases including boundary dates and cross-year ranges
+  - `Event.compareTo` / sort ordering — 4 cases
+  - `RightNowActivity.extractTitles` — 4 regex cases
+  - `SignUpActivity.isValidNeuEmail` — 5 cases including spoofed domains
+  - `Trip.addEventID` null safety — 2 cases
+  - `AppConstants` value sanity checks — 4 cases
 
 ---
 
@@ -157,7 +225,7 @@ NEUQuest/
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Kaustubha-09/NEUQuest.git
    cd NEUQuest
    ```
 
@@ -170,9 +238,14 @@ NEUQuest/
 
 3. **Build and Run**
    ```bash
-   ./gradlew build
+   ./gradlew assembleDebug
    ```
    Or use Android Studio's built-in build and run functionality.
+
+4. **Run unit tests**
+   ```bash
+   ./gradlew test
+   ```
 
 ---
 
@@ -192,71 +265,34 @@ NEUQuest/
 
 Budget travelers enrolled at Northeastern University seeking affordable travel destinations and dining options tailored to their interests and dietary requirements.
 
+---
+
 ## 🏆 Competitors & Market Analysis
 
 ### Competitors
 
-1. **Wanderlog**
-   - Trip planning app to build an itinerary
-   - Users have complained about navigation difficulties and the cumbersome process of editing itineraries
+1. **Wanderlog** — Trip planning app to build an itinerary. Users have complained about navigation difficulties and the cumbersome process of editing itineraries.
 
-2. **Tripadvisor**
-   - App comparing hotel prices from over 200 booking sites worldwide
-   - Criticized for outdated reviews and listings of permanently closed establishments
+2. **Tripadvisor** — Compares hotel prices from over 200 booking sites worldwide. Criticized for outdated reviews and listings of permanently closed establishments.
 
-3. **Other Travel Planning Apps**
-   - Various apps offer similar features but lack the exclusive focus on Northeastern University students that NEUQuest provides
-
-### Themes in Competitor Reviews
-- Navigation and usability issues
-- Outdated information
-- Lack of tailored recommendations
+3. **Other Travel Planning Apps** — Various apps offer similar features but lack the exclusive focus on Northeastern University students that NEUQuest provides.
 
 ### NEUQuest's Competitive Advantage
 - Exclusive focus on Northeastern University students
 - Budget-conscious approach with student deals
-- Personalized recommendations based on interests and dietary requirements
-- Real-time, up-to-date information
-- Intuitive navigation and user experience
-
-## 📝 Course Information
-
-**Course**: Mobile Application Development (NUMAD24Su)  
-**Institution**: Northeastern University  
-**Semester**: Summer 2024
+- AI-powered personalized recommendations (Google Gemini)
+- Real-time, up-to-date information via Firebase
+- Offline support via Firebase disk persistence
 
 ---
 
 ## 🔒 Security & Privacy
 
-- Email verification required for account activation
+- Email verification required for all accounts before accessing the app
+- Only `@northeastern.edu` and `@husky.neu.edu` email addresses accepted at signup
 - Secure Firebase Authentication
-- User-reported content moderation
-- Admin oversight for content management
-
----
-
-## 📄 License
-
-This project was developed as part of a university course assignment.
-
----
-
-## ✅ Project Feasibility
-
-Yes! The team is confident in designing, building, and testing this app before the end of the semester. The chosen technology stack and architecture provide a solid foundation for rapid development and testing.
-
-## 🎯 Future Enhancements
-
-Potential improvements for future iterations:
-- Push notifications for event reminders
-- Social features (friends, shared trips)
-- Advanced filtering and search capabilities
-- Integration with calendar apps
-- Weather integration for trip planning
-- Reviews and ratings system
-- Enhanced AI-powered recommendations
-- Integration with more student discount platforms
+- User-reported content moderation with admin oversight
+- `google-services.json` and `GeminiClient.java` excluded from version control
 
 ---
 
@@ -306,7 +342,7 @@ Location-based event discovery with dual location selector, prominent event card
 
 **Prototype 2: Deals & Events Feed**
 
-<img src="docs/images/Screenshot_2026-01-24_at_3.29.47_PM-6fa3edf1-e760-4dd9-96a6-c30092a050af.png" alt="Prototype 2 - Deals Feed" width="200"/>
+<img src="docs/images/Screenshot_2026-01-24_at_3.29.47_PM-6fa3edf1-e760-4dd9-96a6-c50092a050af.png" alt="Prototype 2 - Deals Feed" width="200"/>
 
 Student-focused deals feed with search bar, interest-based filters, and vertical cards showcasing student discounts, events, and grocery deals with action buttons.
 
@@ -326,16 +362,16 @@ Based on user feedback, we implemented several key enhancements:
 
 <img src="docs/images/Screenshot_2026-01-24_at_3.30.19_PM-ed6f5824-f45f-4d97-903a-0c1812325572.png" alt="Collaborative Planning Feature" width="200"/>
 
-Enables multiple users to collaborate on travel plans with real-time editing, commenting, task assignment, and version control. Users can share itineraries with friends and work together to improve plan quality.
+Enables multiple users to collaborate on travel plans with real-time editing, commenting, task assignment, and version control.
 
 </td>
 <td width="50%">
 
 **Like/Dislike System**
 
-<img src="docs/images/Screenshot_2026-01-24_at_3.30.27_PM-7a6d565e-ee32-4a82-84d3-1d93ca37dd2e.png" alt="Like/Dislike System - Right Now Screen" width="200"/>
+<img src="docs/images/Screenshot_2026-01-24_at_3.30.27_PM-7a6d565e-ee32-4a82-84d3-1d93ca37dd2e.png" alt="Like/Dislike System" width="200"/>
 
-Based on user feedback, added like/dislike buttons to the "Right Now" page, allowing users to express sentiment towards events and enabling algorithmic fine-tuning of personalized feed content.
+Like/dislike buttons on the "Right Now" page allow users to express sentiment towards events and enable algorithmic fine-tuning of the personalized feed.
 
 </td>
 </tr>
@@ -343,11 +379,11 @@ Based on user feedback, added like/dislike buttons to the "Right Now" page, allo
 
 ### Design Principles
 
-- **Budget-First Approach**: Budget information is prominently displayed throughout the app
-- **Student-Centric**: Exclusive focus on student deals and Northeastern University community
+- **Budget-First**: Budget information is prominently displayed throughout the app
+- **Student-Centric**: Exclusive focus on student deals and the Northeastern University community
 - **Intuitive Navigation**: Clear bottom navigation with consistent iconography
 - **Timeline Visualization**: Visual representation of schedules and itineraries
-- **Personalization**: Interest-based filtering and recommendations throughout
+- **Personalization**: Interest-based filtering and AI-powered recommendations throughout
 
 **Additional Design Wireframe**
 
@@ -399,6 +435,34 @@ Comprehensive event creation form with name, description, pricing, scheduling, l
 </td>
 </tr>
 </table>
+
+---
+
+## 🎯 Future Enhancements
+
+- Push notifications for event reminders (FCM integration)
+- Full MVVM migration — ViewModels and LiveData for all screens
+- Google Maps integration for event locations
+- Social features (friends, shared trips)
+- Advanced filtering and search
+- Calendar app integration
+- Weather integration for trip planning
+- Reviews and ratings system
+- CI/CD pipeline with GitHub Actions
+
+---
+
+## 📝 Course Information
+
+**Course**: Mobile Application Development (NUMAD24Su)
+**Institution**: Northeastern University
+**Semester**: Summer 2024
+
+---
+
+## 📄 License
+
+This project was developed as part of a university course assignment.
 
 ---
 
