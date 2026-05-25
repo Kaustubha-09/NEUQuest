@@ -14,11 +14,25 @@ Both platforms talk to the same Firebase project (Auth, Realtime DB, Storage) an
 
 ## Screenshots
 
+### Android app (shipped)
+
 | Welcome | Trip Planner | Profile |
 |:-:|:-:|:-:|
 | <img src="Screenshots/01_explore.png" width="220" /> | <img src="Screenshots/02_budget.png" width="220" /> | <img src="Screenshots/03_profile.png" width="220" /> |
 
-Captured from the Android client. Files `04_capture_1.png` through `09_capture_6.png` in [`Screenshots/`](Screenshots/) are **early pen-and-paper wireframes** from the July 2024 design phase — preserved as portfolio context for the iterative design process (see [docs/decisions.md, ADR-009](docs/decisions.md#adr-009--wireframes-preserved-in-screenshots-not-deleted)).
+Captured from the Android client.
+
+### Early wireframes & prototypes
+
+Pen-and-paper sketches from the July 2024 design phase — preserved as portfolio context for the iterative design process. See [docs/decisions.md, ADR-009](docs/decisions.md#adr-009--wireframes-preserved-in-screenshots-not-deleted) for why these stay alongside the real captures.
+
+| Trip itinerary builder | Add-activity flow | Trip summary |
+|:-:|:-:|:-:|
+| <img src="Screenshots/04_capture_1.png" width="220" /> | <img src="Screenshots/05_capture_2.png" width="220" /> | <img src="Screenshots/06_capture_3.png" width="220" /> |
+
+| Onboarding & budget | Activity detail | Settings & profile |
+|:-:|:-:|:-:|
+| <img src="Screenshots/07_capture_4.png" width="220" /> | <img src="Screenshots/08_capture_5.png" width="220" /> | <img src="Screenshots/09_capture_6.png" width="220" /> |
 
 ---
 
