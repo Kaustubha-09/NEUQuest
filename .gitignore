@@ -1,34 +1,51 @@
-# Gradle files
-.gradle/
-build/
+# ============================================================
+# Android
+# ============================================================
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/captures/
+android/.externalNativeBuild/
+android/.cxx/
+android/*.apk
+android/output.json
+android/.idea/
+android/*.iml
 
-# Local configuration file (sdk path, etc)
-local.properties
+# Firebase / Gemini secrets
+android/app/google-services.json
+android/app/src/main/java/edu/northeastern/numad24su_group9/gemini/GeminiClient.java
 
-# Log/OS Files
-*.log
-
-# Android Studio generated files and folders
-captures/
-.externalNativeBuild/
-.cxx/
-*.apk
-output.json
-
-# IntelliJ
-*.iml
-.idea/
-misc.xml
-deploymentTargetDropDown.xml
-render.experimental.xml
-
-# Keystore files
+# Keystore
 *.jks
 *.keystore
 
-# Google Services (e.g. APIs or Firebase)
-google-services.json
+# ============================================================
+# iOS
+# ============================================================
+ios/*.xcworkspace/
+ios/DerivedData/
+ios/build/
+ios/*.xcuserdata/
+ios/**/*.xcuserstate
+ios/Pods/
+ios/.build/
+ios/Package.resolved
 
-# Android Profiling
-*.hprof
-app/src/main/java/edu/northeastern/numad24su_group9/gemini/GeminiClient.java
+# Firebase / Gemini secrets
+ios/NEUQuest/GoogleService-Info.plist
+
+# ============================================================
+# macOS
+# ============================================================
+.DS_Store
+**/.DS_Store
+*.log
+
+# ============================================================
+# Editors
+# ============================================================
+.vscode/
+*.swp
+*.swo

@@ -1,0 +1,681 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AB000001000000000000001 /* NEUQuestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000001 /* NEUQuestApp.swift */; };
+		AB000002000000000000001 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002000000000000001 /* Comment.swift */; };
+		AB000003000000000000001 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000003000000000000001 /* Event.swift */; };
+		AB000004000000000000001 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000004000000000000001 /* Trip.swift */; };
+		AB000005000000000000001 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000005000000000000001 /* User.swift */; };
+		AB000006000000000000001 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000006000000000000001 /* AuthService.swift */; };
+		AB000007000000000000001 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000007000000000000001 /* EventService.swift */; };
+		AB000008000000000000001 /* GeminiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000008000000000000001 /* GeminiService.swift */; };
+		AB000009000000000000001 /* TripService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000009000000000000001 /* TripService.swift */; };
+		AB000010000000000000001 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000010000000000000001 /* UserService.swift */; };
+		AB000011000000000000001 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000011000000000000001 /* AppTheme.swift */; };
+		AB000012000000000000001 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000012000000000000001 /* Extensions.swift */; };
+		AB000013000000000000001 /* AdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000013000000000000001 /* AdminViewModel.swift */; };
+		AB000014000000000000001 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000014000000000000001 /* AuthViewModel.swift */; };
+		AB000015000000000000001 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000015000000000000001 /* EventViewModel.swift */; };
+		AB000016000000000000001 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000016000000000000001 /* ProfileViewModel.swift */; };
+		AB000017000000000000001 /* TripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000017000000000000001 /* TripViewModel.swift */; };
+		AB000018000000000000001 /* EmailVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000018000000000000001 /* EmailVerificationView.swift */; };
+		AB000019000000000000001 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000019000000000000001 /* LoginView.swift */; };
+		AB000020000000000000001 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000020000000000000001 /* SignUpView.swift */; };
+		AB000021000000000000001 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000021000000000000001 /* SplashView.swift */; };
+		AB000022000000000000001 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000022000000000000001 /* AddEventView.swift */; };
+		AB000023000000000000001 /* AdminConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000023000000000000001 /* AdminConsoleView.swift */; };
+		AB000024000000000000001 /* BudgetRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000024000000000000001 /* BudgetRangeSlider.swift */; };
+		AB000025000000000000001 /* CategoryChipRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000025000000000000001 /* CategoryChipRow.swift */; };
+		AB000026000000000000001 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000026000000000000001 /* CommentView.swift */; };
+		AB000027000000000000001 /* EventCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000027000000000000001 /* EventCardView.swift */; };
+		AB000028000000000000001 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000028000000000000001 /* EventDetailView.swift */; };
+		AB000029000000000000001 /* RegisterEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000029000000000000001 /* RegisterEventView.swift */; };
+		AB000030000000000000001 /* RightNowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000030000000000000001 /* RightNowView.swift */; };
+		AB000031000000000000001 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000031000000000000001 /* MainTabView.swift */; };
+		AB000032000000000000001 /* InterestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000032000000000000001 /* InterestsView.swift */; };
+		AB000033000000000000001 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000033000000000000001 /* ProfileView.swift */; };
+		AB000034000000000000001 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000034000000000000001 /* RootView.swift */; };
+		AB000035000000000000001 /* TripDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000035000000000000001 /* TripDetailView.swift */; };
+		AB000036000000000000001 /* TripPlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000036000000000000001 /* TripPlannerView.swift */; };
+		AB000037000000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000037000000000000001 /* Assets.xcassets */; };
+		AB000038000000000000001 /* NEUQuestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000038000000000000001 /* NEUQuestTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AA000001000000000000001 /* NEUQuestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NEUQuestApp.swift; sourceTree = "<group>"; };
+		AA000002000000000000001 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		AA000003000000000000001 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		AA000004000000000000001 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
+		AA000005000000000000001 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AA000006000000000000001 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		AA000007000000000000001 /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
+		AA000008000000000000001 /* GeminiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiService.swift; sourceTree = "<group>"; };
+		AA000009000000000000001 /* TripService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripService.swift; sourceTree = "<group>"; };
+		AA000010000000000000001 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		AA000011000000000000001 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		AA000012000000000000001 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		AA000013000000000000001 /* AdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewModel.swift; sourceTree = "<group>"; };
+		AA000014000000000000001 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		AA000015000000000000001 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		AA000016000000000000001 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		AA000017000000000000001 /* TripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewModel.swift; sourceTree = "<group>"; };
+		AA000018000000000000001 /* EmailVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationView.swift; sourceTree = "<group>"; };
+		AA000019000000000000001 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		AA000020000000000000001 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		AA000021000000000000001 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		AA000022000000000000001 /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
+		AA000023000000000000001 /* AdminConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminConsoleView.swift; sourceTree = "<group>"; };
+		AA000024000000000000001 /* BudgetRangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetRangeSlider.swift; sourceTree = "<group>"; };
+		AA000025000000000000001 /* CategoryChipRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryChipRow.swift; sourceTree = "<group>"; };
+		AA000026000000000000001 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		AA000027000000000000001 /* EventCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardView.swift; sourceTree = "<group>"; };
+		AA000028000000000000001 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
+		AA000029000000000000001 /* RegisterEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEventView.swift; sourceTree = "<group>"; };
+		AA000030000000000000001 /* RightNowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightNowView.swift; sourceTree = "<group>"; };
+		AA000031000000000000001 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		AA000032000000000000001 /* InterestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestsView.swift; sourceTree = "<group>"; };
+		AA000033000000000000001 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		AA000034000000000000001 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		AA000035000000000000001 /* TripDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailView.swift; sourceTree = "<group>"; };
+		AA000036000000000000001 /* TripPlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPlannerView.swift; sourceTree = "<group>"; };
+		AA000037000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA000038000000000000001 /* NEUQuestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NEUQuestTests.swift; sourceTree = "<group>"; };
+		AA000039000000000000001 /* NEUQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NEUQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA000040000000000000001 /* NEUQuestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NEUQuestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CA000001000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA000002000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BA000001000000000000001 /* Main Group */ = {
+			isa = PBXGroup;
+			children = (
+				BA000002000000000000001 /* NEUQuest */,
+				BA000015000000000000001 /* NEUQuestTests */,
+				BA000014000000000000001 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BA000002000000000000001 /* NEUQuest */ = {
+			isa = PBXGroup;
+			children = (
+				AA000001000000000000001 /* NEUQuestApp.swift */,
+				BA000003000000000000001 /* Models */,
+				BA000004000000000000001 /* Services */,
+				BA000006000000000000001 /* ViewModels */,
+				BA000007000000000000001 /* Views */,
+				BA000005000000000000001 /* Utils */,
+				AA000037000000000000001 /* Assets.xcassets */,
+			);
+			path = NEUQuest;
+			sourceTree = "<group>";
+		};
+		BA000003000000000000001 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA000002000000000000001 /* Comment.swift */,
+				AA000003000000000000001 /* Event.swift */,
+				AA000004000000000000001 /* Trip.swift */,
+				AA000005000000000000001 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BA000004000000000000001 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AA000006000000000000001 /* AuthService.swift */,
+				AA000007000000000000001 /* EventService.swift */,
+				AA000008000000000000001 /* GeminiService.swift */,
+				AA000009000000000000001 /* TripService.swift */,
+				AA000010000000000000001 /* UserService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BA000005000000000000001 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AA000011000000000000001 /* AppTheme.swift */,
+				AA000012000000000000001 /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		BA000006000000000000001 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AA000013000000000000001 /* AdminViewModel.swift */,
+				AA000014000000000000001 /* AuthViewModel.swift */,
+				AA000015000000000000001 /* EventViewModel.swift */,
+				AA000016000000000000001 /* ProfileViewModel.swift */,
+				AA000017000000000000001 /* TripViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BA000007000000000000001 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA000034000000000000001 /* RootView.swift */,
+				AA000031000000000000001 /* MainTabView.swift */,
+				BA000008000000000000001 /* Auth */,
+				BA000009000000000000001 /* Events */,
+				BA000010000000000000001 /* Trips */,
+				BA000011000000000000001 /* Profile */,
+				BA000012000000000000001 /* Admin */,
+				BA000013000000000000001 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BA000008000000000000001 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				AA000021000000000000001 /* SplashView.swift */,
+				AA000019000000000000001 /* LoginView.swift */,
+				AA000020000000000000001 /* SignUpView.swift */,
+				AA000018000000000000001 /* EmailVerificationView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		BA000009000000000000001 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				AA000030000000000000001 /* RightNowView.swift */,
+				AA000028000000000000001 /* EventDetailView.swift */,
+				AA000029000000000000001 /* RegisterEventView.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		BA000010000000000000001 /* Trips */ = {
+			isa = PBXGroup;
+			children = (
+				AA000036000000000000001 /* TripPlannerView.swift */,
+				AA000035000000000000001 /* TripDetailView.swift */,
+			);
+			path = Trips;
+			sourceTree = "<group>";
+		};
+		BA000011000000000000001 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				AA000033000000000000001 /* ProfileView.swift */,
+				AA000032000000000000001 /* InterestsView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		BA000012000000000000001 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				AA000023000000000000001 /* AdminConsoleView.swift */,
+				AA000022000000000000001 /* AddEventView.swift */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		BA000013000000000000001 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AA000027000000000000001 /* EventCardView.swift */,
+				AA000025000000000000001 /* CategoryChipRow.swift */,
+				AA000026000000000000001 /* CommentView.swift */,
+				AA000024000000000000001 /* BudgetRangeSlider.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		BA000014000000000000001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA000039000000000000001 /* NEUQuest.app */,
+				AA000040000000000000001 /* NEUQuestTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BA000015000000000000001 /* NEUQuestTests */ = {
+			isa = PBXGroup;
+			children = (
+				AA000038000000000000001 /* NEUQuestTests.swift */,
+			);
+			path = NEUQuestTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		TA000001000000000000001 /* NEUQuest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = LA000001000000000000001 /* Build configuration list for PBXNativeTarget "NEUQuest" */;
+			buildPhases = (
+				PA000001000000000000001 /* Sources */,
+				CA000001000000000000001 /* Frameworks */,
+				PA000002000000000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NEUQuest;
+			productName = NEUQuest;
+			productReference = AA000039000000000000001 /* NEUQuest.app */;
+			productType = "com.apple.product-type.application";
+		};
+		TA000002000000000000001 /* NEUQuestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = LA000002000000000000001 /* Build configuration list for PBXNativeTarget "NEUQuestTests" */;
+			buildPhases = (
+				PA000003000000000000001 /* Sources */,
+				CA000002000000000000001 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA000001000000000000001 /* PBXTargetDependency */,
+			);
+			name = NEUQuestTests;
+			productName = NEUQuestTests;
+			productReference = AA000040000000000000001 /* NEUQuestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		PR000001000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					TA000001000000000000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					TA000002000000000000001 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = TA000001000000000000001;
+					};
+				};
+			};
+			buildConfigurationList = LA000003000000000000001 /* Build configuration list for PBXProject "NEUQuest" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BA000001000000000000001;
+			productRefGroup = BA000014000000000000001 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				TA000001000000000000001 /* NEUQuest */,
+				TA000002000000000000001 /* NEUQuestTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		PA000002000000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB000037000000000000001 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		PA000001000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB000001000000000000001 /* NEUQuestApp.swift in Sources */,
+				AB000002000000000000001 /* Comment.swift in Sources */,
+				AB000003000000000000001 /* Event.swift in Sources */,
+				AB000004000000000000001 /* Trip.swift in Sources */,
+				AB000005000000000000001 /* User.swift in Sources */,
+				AB000006000000000000001 /* AuthService.swift in Sources */,
+				AB000007000000000000001 /* EventService.swift in Sources */,
+				AB000008000000000000001 /* GeminiService.swift in Sources */,
+				AB000009000000000000001 /* TripService.swift in Sources */,
+				AB000010000000000000001 /* UserService.swift in Sources */,
+				AB000011000000000000001 /* AppTheme.swift in Sources */,
+				AB000012000000000000001 /* Extensions.swift in Sources */,
+				AB000013000000000000001 /* AdminViewModel.swift in Sources */,
+				AB000014000000000000001 /* AuthViewModel.swift in Sources */,
+				AB000015000000000000001 /* EventViewModel.swift in Sources */,
+				AB000016000000000000001 /* ProfileViewModel.swift in Sources */,
+				AB000017000000000000001 /* TripViewModel.swift in Sources */,
+				AB000018000000000000001 /* EmailVerificationView.swift in Sources */,
+				AB000019000000000000001 /* LoginView.swift in Sources */,
+				AB000020000000000000001 /* SignUpView.swift in Sources */,
+				AB000021000000000000001 /* SplashView.swift in Sources */,
+				AB000022000000000000001 /* AddEventView.swift in Sources */,
+				AB000023000000000000001 /* AdminConsoleView.swift in Sources */,
+				AB000024000000000000001 /* BudgetRangeSlider.swift in Sources */,
+				AB000025000000000000001 /* CategoryChipRow.swift in Sources */,
+				AB000026000000000000001 /* CommentView.swift in Sources */,
+				AB000027000000000000001 /* EventCardView.swift in Sources */,
+				AB000028000000000000001 /* EventDetailView.swift in Sources */,
+				AB000029000000000000001 /* RegisterEventView.swift in Sources */,
+				AB000030000000000000001 /* RightNowView.swift in Sources */,
+				AB000031000000000000001 /* MainTabView.swift in Sources */,
+				AB000032000000000000001 /* InterestsView.swift in Sources */,
+				AB000033000000000000001 /* ProfileView.swift in Sources */,
+				AB000034000000000000001 /* RootView.swift in Sources */,
+				AB000035000000000000001 /* TripDetailView.swift in Sources */,
+				AB000036000000000000001 /* TripPlannerView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		PA000003000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB000038000000000000001 /* NEUQuestTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DA000001000000000000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = TA000001000000000000001 /* NEUQuest */;
+			targetProxy = EA000001000000000000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXContainerItemProxy section */
+		EA000001000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = PR000001000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = TA000001000000000000001;
+			remoteInfo = NEUQuest;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin XCBuildConfiguration section */
+		XC000001000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		XC000002000000000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		XC000003000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = NEUQuest;
+				INFOPLIST_KEY_NSCameraUsageDescription = "NEUQuest needs camera access to upload your profile photo.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "NEUQuest needs photo library access to upload your profile photo.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.northeastern.NEUQuest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		XC000004000000000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = NEUQuest;
+				INFOPLIST_KEY_NSCameraUsageDescription = "NEUQuest needs camera access to upload your profile photo.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "NEUQuest needs photo library access to upload your profile photo.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.northeastern.NEUQuest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		XC000005000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.northeastern.NEUQuestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NEUQuest.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NEUQuest";
+			};
+			name = Debug;
+		};
+		XC000006000000000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.northeastern.NEUQuestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NEUQuest.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NEUQuest";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		LA000001000000000000001 /* Build configuration list for PBXNativeTarget "NEUQuest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				XC000003000000000000001 /* Debug */,
+				XC000004000000000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		LA000002000000000000001 /* Build configuration list for PBXNativeTarget "NEUQuestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				XC000005000000000000001 /* Debug */,
+				XC000006000000000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		LA000003000000000000001 /* Build configuration list for PBXProject "NEUQuest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				XC000001000000000000001 /* Debug */,
+				XC000002000000000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = PR000001000000000000001 /* Project object */;
+}
