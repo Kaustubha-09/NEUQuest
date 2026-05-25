@@ -31,4 +31,8 @@ google-services.json
 
 # Android Profiling
 *.hprof
-app/src/main/java/edu/northeastern/numad24su_group9/gemini/GeminiClient.java
+
+# Secret config — gradle.properties at the user level may contain GEMINI_API_KEY etc.
+gradle.properties.local
+secrets.properties
+api_keys.properties

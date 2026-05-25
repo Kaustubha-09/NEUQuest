@@ -15,7 +15,10 @@ android/*.iml
 
 # Firebase / Gemini secrets
 android/app/google-services.json
-android/app/src/main/java/edu/northeastern/numad24su_group9/gemini/GeminiClient.java
+# GEMINI_API_KEY is loaded from ~/.gradle/gradle.properties at build time
+# (see android/app/build.gradle.kts buildConfigField). Never check secrets in.
+secrets.properties
+api_keys.properties
 
 # Keystore
 *.jks

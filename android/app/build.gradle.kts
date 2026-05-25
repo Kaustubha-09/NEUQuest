@@ -15,10 +15,19 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Gemini API key is loaded from ~/.gradle/gradle.properties (not committed)
+        // or the GEMINI_API_KEY environment variable. Empty fallback so the
+        // build succeeds in CI without a key — GeminiClient handles the no-key case.
+        val geminiApiKey = (project.findProperty("GEMINI_API_KEY") as String?)
+            ?: System.getenv("GEMINI_API_KEY")
+            ?: ""
+        buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
     }
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
     buildTypes {
